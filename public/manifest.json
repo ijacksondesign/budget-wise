@@ -1,7 +1,7 @@
 {
     "name": "Budget Wise",
     "short_name": "B-Wise",
-    "theme_color": "#ffffff",
+    "theme_color": "#317EFB",
     "background_color": "#ffffff",
     "start_url": "./index.html",
     "display": "fullscreen",
