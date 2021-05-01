@@ -9,6 +9,24 @@ const FILES_TO_CACHE = [
     "./js/index.js",
 ];
 
+self.addEventListener('fetch', function (e) {
+    console.log('fetch request : ' + e.request.url)
+    e.respondWith(
+        caches.match(e.request).then(function (request) {
+            if (request) { 
+                // if cache is available, respond with cache
+                console.log('responding with cache : ' + e.request.url)
+                return request
+            } 
+            else {       
+                // if there are no cache, try fetching request
+                console.log('file is not cached, fetching : ' + e.request.url)
+                return fetch(e.request)
+            }
+        })
+    )
+});
+
 self.addEventListener('install', function (e) {
     // tells browser to wait until work is complete before terminating worker
     e.waitUntil(
@@ -35,22 +53,6 @@ self.addEventListener('activate', function (e) {
                     return caches.delete(keyList[i]);
                 }
             }))
-        })
-    )
-});
-
-self.addEventListener('fetch', function (e) {
-    console.log('fetch request : ' + e.request.url);
-    e.respondWith(
-        caches.match(e.request).then(function (request) {
-            if (request) {
-                console.log('responding with cache : ' + e.request.url);
-                return request;
-            }
-            else {
-                console.log('file is not cached, fetching : ' + e.request.url);
-                return fetch(e.request);
-            }
         })
     )
 });
