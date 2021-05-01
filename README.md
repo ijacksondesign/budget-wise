@@ -8,7 +8,7 @@
 * [Usage](#usage)
 
 ## Description <a name="description"></a>
-Budget tracker to help the nomads
+Budget tracker to help nomads while they travel.
 
 ![Budget Wise Screenshot](./screenshot/budget-wise-screenshot.jpg)
 
